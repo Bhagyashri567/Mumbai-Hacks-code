@@ -1,0 +1,119 @@
+/* All Games Section */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body styling */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #1b2838;
+    color: #c7d5e0; /* Default text color */
+}
+
+/* Top Navigation Bar */
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #171a21; /* Header background */
+    padding: 10px 20px;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 10;
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+header .logo {
+    font-size: 1.5em;
+    color: #66c0f4; /* Logo color */
+    font-weight: bold;
+}
+
+header nav ul {
+    list-style-type: none;
+    display: flex;
+}
+
+header nav ul li {
+    margin-left: 20px;
+}
+
+header nav ul li a {
+    color: #c7d5e0; /* Navigation link color */
+    text-decoration: none;
+    font-size: 1em;
+    transition: color 0.3s;
+}
+
+header nav ul li a:hover {
+    color: #66c0f4; /* Hover color */
+}
+
+.all-games {
+    padding: 40px 20px;
+    max-width: 1200px;
+    margin: auto;
+    background-color: #2a475e; /* Background color for the section */
+    border-radius: 8px; /* Rounded corners for the section */
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5); /* Shadow effect */
+}
+
+.all-games h2 {
+    font-size: 2em;
+    color: #66c0f4; /* Section heading color */
+    margin-bottom: 20px;
+    text-align: center; /* Center the heading */
+}
+
+.all-games .game-grid {
+    display: flex; /* Use flexbox to align items side by side */
+    justify-content: space-around; /* Space items evenly */
+    flex-wrap: wrap; /* Allow wrapping for smaller screens */
+}
+
+.all-games .game-item {
+    display: flex;               /* Use flexbox for alignment */
+    flex-direction: column;      /* Stack items vertically */
+    align-items: center;         /* Center items horizontally */
+    text-align: center;          /* Center text */
+    margin: 10px;               /* Add some space around each game item */
+    transition: transform 0.3s ease, background-color 0.3s ease; /* Animation effect */
+    background-color: #3b5567; /* Background color for game items */
+    border-radius: 8px;         /* Rounded corners for game items */
+    padding: 10px;              /* Add padding inside game items */
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3); /* Shadow effect for game items */
+}
+
+.all-games .game-item:hover {
+    transform: scale(1.05); /* Slightly scale up on hover */
+    background-color: #66c0f4; /* Change background color on hover */
+    color: #fff; /* Change text color on hover */
+}
+
+.all-games .game-item img {
+    width: 150px;               /* Set a fixed width for the images */
+    height: auto;               /* Maintain aspect ratio */
+    margin-bottom: 10px;        /* Space between image and text */
+    border-radius: 8px;         /* Rounded corners for images */
+    transition: transform 0.3s ease; /* Image transition */
+}
+
+.all-games .game-item img:hover {
+    transform: scale(1.1); /* Slightly scale up the image on hover */
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .all-games .game-item {
+        width: calc(50% - 20px); /* Adjust size for smaller screens */
+    }
+}
+
+@media (max-width: 480px) {
+    .all-games .game-item {
+        width: calc(100% - 20px); /* Full width for very small screens */
+    }
+}

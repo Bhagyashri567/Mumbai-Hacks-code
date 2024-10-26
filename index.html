@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - AI-Based Game Suggester</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <h1 class="logo">AI-Based Game Suggester</h1>
+            <nav>
+                <ul>
+                    <li><a href="all-games.html">All Games</a></li>
+                    <li><a href="mood_based.html">Mood-Based</a></li>
+                    <li><a href="face_reading.html">Face Reading</a></li>
+                    <li><a href="index.html">Login Page</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <div class="login-container">
+        <h2>Sign In</h2>
+        <form id="loginForm">
+            <input type="text" id="username" placeholder="Username" required>
+            <input type="password" id="password" placeholder="Password" required>
+            <button type="submit">Login</button>
+            <div class="options">
+                <a href="#" onclick="forgotPassword()">Forgot Password</a>
+                <span>|</span>
+                <a href="#" onclick="showSignup()">Signup</a>
+            </div>
+        </form>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+

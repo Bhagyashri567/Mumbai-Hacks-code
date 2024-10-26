@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Face Reading Game Suggestions</title>
+    <link rel="stylesheet" href="home.css">
+    <link rel="stylesheet" href="face_reading.css">
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-models"></script>
+</head>
+<body>
+    <!-- Header with navigation bar -->
+    <header>
+        <div class="header-content">
+            <h1 class="logo">AI-Based Game Suggester</h1>
+            <nav>
+                <ul>
+                    <li><a href="all-games.html">All Games</a></li>
+                    <li><a href="mood_based.html">Mood-Based</a></li>
+                    <li><a href="face_reading.html">Face Reading</a></li>
+                    <li><a href="index.html">Login Page</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main content for face reading -->
+    <section class="face-reading-section">
+        <h2>Face Reading Game Suggestions</h2>
+        <p>Allow access to your camera to analyze your expressions and suggest games based on your mood.</p>
+        <button id="start-button">Start Camera</button>
+        <div class="video-container">
+            <video id="video" autoplay playsinline></video>
+            <canvas id="canvas"></canvas>
+        </div>
+        <div id="suggestions-output"></div>
+    </section>
+
+    <script>
+        const video = document.getElementById('video');
+        const canvas = document.getElementById('canvas');
+        const context = canvas.getContext('2d');
+        const suggestionsOutput = document.getElementById('suggestions-output');
+
+        document.getElementById('start-button').addEventListener('click', async () => {
+            // Access the camera
+            const stream = await navigator.mediaDevices.getUserMedia({ video: true });
+            video.srcObject = stream;
+
+            // Load the face detection model
+            const model = await blazeface.load();
+            detectFace(model);
+        });
+
+        async function detectFace(model) {
+            const predictions = await model.estimateFaces(video);
+            context.drawImage(video, 0, 0, canvas.width, canvas.height);
+            if (predictions.length > 0) {
+                // Draw the bounding box around the detected face
+                const box = predictions[0].topLeft;
+                context.beginPath();
+                context.rect(box[0], box[1], predictions[0].bottomRight[0] - box[0], predictions[0].bottomRight[1] - box[1]);
+                context.lineWidth = 2;
+                context.strokeStyle = 'blue';
+                context.stroke();
+
+                // Simplified mood detection based on predictions
+                let mood = detectMood(predictions[0]);
+                
+                // Update suggestions based on detected mood
+                updateSuggestions(mood);
+            }
+            requestAnimationFrame(() => detectFace(model));
+        }
+
+        // Simple mood detection logic (you can enhance this)
+        function detectMood(prediction) {
+            // For simplicity, assume we can derive mood based on bounding box size
+            const width = prediction.bottomRight[0] - prediction.topLeft[0];
+            const height = prediction.bottomRight[1] - prediction.topLeft[1];
+
+            if (width > 150 && height > 150) {
+                return 'happy'; // Larger face bounding box may indicate happiness
+            } else if (width < 100 || height < 100) {
+                return 'sad'; // Smaller bounding box may indicate sadness
+            }
+            return 'neutral';
+        }
+
+        // Update game suggestions based on detected mood
+        function updateSuggestions(mood) {
+            let suggestions = '';
+            if (mood === 'happy') {
+                suggestions = "Detected mood: Happy. Suggested games: Joyful Adventure, Happy Garden.";
+            } else if (mood === 'sad') {
+                suggestions = "Detected mood: Sad. Suggested games: Calm Waters, Peaceful Journey.";
+            } else {
+                suggestions = "Detected mood: Neutral. Suggested games: Strategy Challenge, Puzzle Solver.";
+            }
+            suggestionsOutput.textContent = suggestions;
+        }
+
+        // Resize canvas to match video dimensions
+        video.addEventListener('loadedmetadata', () => {
+            canvas.width = video.videoWidth;
+            canvas.height = video.videoHeight;
+        });
+    </script>
+</body>
+</html>

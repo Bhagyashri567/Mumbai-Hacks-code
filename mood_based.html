@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mood-Based Game Suggestions</title>
+    <link rel="stylesheet" href="home.css">
+    <link rel="stylesheet" href="mood_based.css">
+</head>
+<body>
+    <!-- Header with navigation bar -->
+    <header>
+        <div class="header-content">
+            <h1 class="logo">AI-Based Game Suggester</h1>
+            <nav>
+                <ul>
+                    <li><a href="all-games.html">All Games</a></li>
+                    <li><a href="mood_based.html">Mood-Based</a></li>
+                    <li><a href="face_reading.html">Face Reading</a></li>
+                    <li><a href="index.html">Login Page</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main content for mood selection -->
+    <section class="mood-section">
+        <h2>What is your mood today?</h2>
+        <p id="instruction">Please select your mood and enter your age to get personalized game suggestions!</p>
+        <form id="mood-form">
+            <label for="mood">Select your mood:</label>
+            <select id="mood" required>
+                <option value="">--Select your mood--</option>
+                <option value="happy">Happy</option>
+                <option value="sad">Sad</option>
+                <option value="excited">Excited</option>
+                <option value="bored">Bored</option>
+                <option value="focused">Focused</option>
+            </select>
+
+            <label for="age">Enter your age (1-70):</label>
+            <input type="number" id="age" min="1" max="70" required placeholder="Your age" />
+
+            <button type="submit">Get Game Suggestions</button>
+        </form>
+
+        <div id="suggestions-output"></div>
+    </section>
+
+    <script>
+        document.getElementById('mood-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const mood = document.getElementById('mood').value;
+            const age = document.getElementById('age').value;
+            const suggestionsOutput = document.getElementById('suggestions-output');
+            const instruction = document.getElementById('instruction');
+
+            // Update instruction based on mood selection
+            if (mood) {
+                instruction.textContent = `You've selected "${mood}". Now, click the button to see your game suggestions!`;
+            }
+
+            // Simulated game suggestions based on mood and age
+            let suggestions = `Based on your mood: ${mood} and age: ${age}, we suggest these games: `;
+            if (mood === 'happy') {
+                suggestions += "Joyful Adventure, Happy Garden";
+            } else if (mood === 'sad') {
+                suggestions += "Calm Waters, Peaceful Journey";
+            } else if (mood === 'excited') {
+                suggestions += "Action Rush, Speed Challenge";
+            } else if (mood === 'bored') {
+                suggestions += "Puzzle Mania, Creative Builder";
+            } else if (mood === 'focused') {
+                suggestions += "Mind Games, Strategy Challenge";
+            }
+
+            suggestionsOutput.textContent = suggestions;
+        });
+    </script>
+</body>
+</html>

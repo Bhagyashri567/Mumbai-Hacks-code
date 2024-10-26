@@ -1,0 +1,232 @@
+/* Basic reset and styling */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+/* Body styling */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #1b2838;
+    color: #c7d5e0; /* Default text color */
+    text-align: center;
+}
+
+/* Top Navigation Bar */
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #171a21; /* Header background */
+    padding: 10px 20px;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 10;
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.5);
+    text-align: center;
+}
+
+header .logo {
+    font-size: 1.5em;
+    color: #66c0f4; /* Logo color */
+    font-weight: bold;
+}
+
+header nav ul {
+    list-style-type: none;
+    display: flex;
+}
+
+header nav ul li {
+    margin-left: 20px;
+}
+
+header nav ul li a {
+    color: #c7d5e0; /* Navigation link color */
+    text-decoration: none;
+    font-size: 1em;
+    transition: color 0.3s;
+}
+
+header nav ul li a:hover {
+    color: #66c0f4; /* Hover color */
+}
+
+/* Chat Section Styles */
+.chat-section {
+    background-color: #f9f9f9; /* Light background for the chat section */
+    padding: 20px; /* Padding around the section */
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    margin: 20px 0; /* Space around the section */
+}
+
+.chat-section h2 {
+    font-size: 24px; /* Heading size */
+    margin-bottom: 15px; /* Space below the heading */
+    text-align: center; /* Center the heading */
+}
+
+.chat-box {
+    display: flex;
+    flex-direction: column; /* Arrange items in a column */
+    max-width: 600px; /* Max width for the chat box */
+    margin: auto; /* Center the chat box */
+    border: 1px solid #ccc; /* Border around the chat box */
+    border-radius: 5px; /* Rounded corners */
+    overflow: hidden; /* Prevent overflow */
+}
+
+#chat-output {
+    flex: 1; /* Allow the chat output to grow */
+    padding: 10px; /* Padding inside the chat output */
+    max-height: 300px; /* Maximum height for the chat output */
+    overflow-y: auto; /* Allow vertical scrolling */
+    background-color: #fff; /* White background for chat output */
+}
+
+#user-input {
+    padding: 10px; /* Padding inside the input field */
+    border: none; /* No border */
+    outline: none; /* Remove outline */
+    flex: 1; /* Allow the input field to grow */
+    border-top: 1px solid #ccc; /* Border on top */
+}
+
+#send-button {
+    background-color: #007bff; /* Button background color */
+    color: white; /* Button text color */
+    border: none; /* No border */
+    padding: 10px 15px; /* Padding inside the button */
+    cursor: pointer; /* Pointer cursor on hover */
+    transition: background-color 0.3s; /* Smooth transition for background color */
+}
+
+#send-button:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+}
+
+#chat-output div {
+    margin: 5px 0; /* Space between messages */
+}
+
+#chat-output div.User {
+    text-align: right; /* Align user messages to the right */
+    color: #007bff; /* User message color */
+}
+
+#chat-output div.AI {
+    text-align: left; /* Align AI messages to the left */
+    color: #333; /* AI message color */
+}
+
+/* Banner Section */
+.banner {
+    text-align: center;
+    padding: 100px 20px;
+    background: url('assets/gamebg.jpg') no-repeat center center/cover; /* Adjust the path */
+    color: #fff;
+    background-blend-mode: overlay;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.banner h1 {
+    font-size: 2.5em;
+    margin-bottom: 10px;
+}
+
+.banner p {
+    font-size: 1.2em;
+}
+
+/* Featured Games Section */
+.featured {
+    padding: 40px 20px;
+    max-width: 1200px;
+    margin: auto;
+}
+
+.featured h2 {
+    font-size: 2em;
+    color: #66c0f4; /* Featured section heading color */
+    margin-bottom: 20px;
+}
+
+.featured .game-grid {
+    display: flex; /* Use flexbox to align items side by side */
+    justify-content: space-around; /* Space items evenly */
+    flex-wrap: wrap; /* Allow wrapping for smaller screens */
+}
+
+.featured .game-card {
+    background-color: #2a475e; /* Card background */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+    color: #c7d5e0; /* Text color */
+    margin: 15px;
+    width: calc(33.33% - 40px); /* Responsive width */
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.featured .game-card:hover {
+    transform: scale(1.05); /* Hover effect */
+}
+
+.featured .game-card img {
+    max-width: 100%; /* Responsive image */
+    border-radius: 8px; /* Rounded corners for images */
+}
+
+.featured .game-card h3 {
+    font-size: 1.5em; /* Title font size */
+    margin: 10px 0;
+}
+
+.featured .game-card p {
+    font-size: 0.9em; /* Description font size */
+    color: #b8c6d1; /* Description color */
+}
+
+/* Clear float after game cards */
+.featured:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+/* Additional styles for smaller screens */
+@media (max-width: 600px) {
+    .featured .game-card {
+        width: calc(50% - 40px); /* Two cards per row on small screens */
+    }
+    
+    .banner {
+        padding: 60px 20px; /* Adjust padding for smaller screens */
+    }
+
+    .banner h1 {
+        font-size: 2em; /* Smaller title font size */
+    }
+    
+    .banner p {
+        font-size: 1em; /* Smaller paragraph font size */
+    }
+}
+
+.game-item {
+    display: flex;               /* Use flexbox for alignment */
+    flex-direction: column;      /* Stack items vertically */
+    align-items: center;         /* Center items horizontally */
+    text-align: center;          /* Center text */
+                 /* Add some space around each game item */
+}
+
+.game-item img {
+                 /* Maintain aspect ratio */
+    margin-bottom: 10px;        /* Space between image and text */
+}

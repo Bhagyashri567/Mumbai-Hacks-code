@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI-Based Game Suggester</title>
+    <link rel="stylesheet" href="home.css">
+</head>
+<body>
+    <!-- Header with navigation bar -->
+    <header>
+        <div class="header-content">
+            <h1 class="logo">AI-Based Game Suggester</h1>
+            <nav>
+                <ul>
+                    <li><a href="all-games.html">All Games</a></li>
+                    <li><a href="mood_based.html">Mood-Based</a></li>
+                    <li><a href="face_reading.html">Face Reading</a></li>
+                    <li><a href="index.html">Login Page</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main banner section -->
+    <section class="banner">
+        <div class="banner-content">
+            <h2>Welcome to AI-Based Game Suggester</h2>
+            <p>Find the best game for every mood with personalized suggestions.</p>
+        </div>
+    </section>
+
+    <section class="chat-section">
+        <h2>Chat with AI</h2>
+        <div class="chat-box">
+            <div id="chat-output"></div>
+            <input type="text" id="user-input" placeholder="Type your message here..." />
+            <button id="send-button">Send</button>
+        </div>
+    </section>
+
+    <!-- Featured games section -->
+    <section class="featured">
+        <h2>Featured & Recommended</h2>
+        <div class="game-grid">
+            <div class="game-item">
+                <img src='assets/Cyberpunk2077.jpg' alt="Cyberpunk 2077">
+                <p>Cyberpunk 2077</p>
+            </div>
+            <div class="game-item">
+                <img src='assets/pubg.jpg' alt="PUBG">
+                <p>PUBG</p>
+            </div>
+            <div class="game-item">
+                <img src='assets/game3.jpg' alt="The Witcher 3">
+                <p>The Witcher 3</p>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        document.getElementById('send-button').addEventListener('click', function() {
+            const userInput = document.getElementById('user-input');
+            const chatOutput = document.getElementById('chat-output');
+
+            // Get the user's message
+            const message = userInput.value;
+            if (message.trim() === '') return; // Prevent sending empty messages
+
+            // Append user message to chat output
+            const userMessageDiv = document.createElement('div');
+            userMessageDiv.className = 'User';
+            userMessageDiv.textContent = message;
+            chatOutput.appendChild(userMessageDiv);
+
+            // Clear the input field
+            userInput.value = '';
+
+            // Simulate AI response
+            const aiResponseDiv = document.createElement('div');
+            aiResponseDiv.className = 'AI';
+            aiResponseDiv.textContent = `You said: "${message}"`; // Simulated AI response
+            chatOutput.appendChild(aiResponseDiv);
+
+            // Scroll to the bottom of the chat
+            chatOutput.scrollTop = chatOutput.scrollHeight;
+        });
+
+        // Optional: Allow pressing Enter to send messages
+        document.getElementById('user-input').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                document.getElementById('send-button').click();
+            }
+        });
+    </script>
+</body>
+</html>
